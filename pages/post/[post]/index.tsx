@@ -8,7 +8,7 @@ import { Post } from 'src/starlight'
 import { Layout } from 'src/components/Layout'
 import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { FeaturedImage, Title, Info, Content } from './styles'
+import { FeaturedImage, Title, Info, Content } from 'src/styles/post'
 import { toRelativeDate } from 'src/helpers/date'
 
 type PostProps = {

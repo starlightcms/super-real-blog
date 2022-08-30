@@ -6,10 +6,10 @@ import Starlight, {
 import { Post } from 'src/starlight'
 import { Layout } from 'src/components/Layout'
 import { Card } from 'src/components/Card'
-import { CardList } from '../_styles'
+import { CardList } from 'src/styles/home'
 import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { Title } from './styles'
+import { Title } from 'src/styles/category'
 
 type CategoryProps = {
   category: ModelCategory
