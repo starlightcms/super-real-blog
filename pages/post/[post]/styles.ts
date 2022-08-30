@@ -30,10 +30,6 @@ export const Content = styled.article`
   font-weight: 400;
   margin-bottom: 8rem;
 
-  * {
-    max-width: 100%;
-  }
-
   h1,
   h2,
   h3,

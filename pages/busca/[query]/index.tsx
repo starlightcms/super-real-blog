@@ -21,7 +21,7 @@ const Search = ({ query, posts, categories }: SearchProps) => (
   <>
     <Head>
       <title>
-        Busca por &#8220;{query}&#8221; — Blog Super Real do Starlight
+        {`Busca por &#8220;${query}&#8221; — Blog Super Real do Starlight`}
       </title>
     </Head>
     <Layout categories={categories}>

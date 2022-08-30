@@ -20,7 +20,7 @@ type CategoryProps = {
 const Category = ({ category, posts, categories }: CategoryProps) => (
   <>
     <Head>
-      <title>{category.title} — Blog Super Real do Starlight</title>
+      <title>{`${category.title} — Blog Super Real do Starlight`}</title>
     </Head>
     <Layout categories={categories}>
       <Title>{category.title}</Title>

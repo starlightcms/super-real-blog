@@ -19,7 +19,7 @@ type PostProps = {
 const Post = ({ post, categories }: PostProps) => (
   <>
     <Head>
-      <title>{post.title} — Blog Super Real do Starlight</title>
+      <title>{`${post.title} — Blog Super Real do Starlight`}</title>
     </Head>
     <Layout categories={categories}>
       <Content>

@@ -1,4 +1,4 @@
-import Starlight from '@starlightcms/react-sdk'
+import Starlight, { VisualContentStyles } from '@starlightcms/react-sdk'
 
 Starlight.configure({
   workspace: process.env.NEXT_PUBLIC_STARLIGHT_WORKSPACE,
@@ -7,7 +7,12 @@ Starlight.configure({
 })
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <VisualContentStyles />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
 export default MyApp
