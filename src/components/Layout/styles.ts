@@ -12,6 +12,9 @@ export const Header = styled.header`
 `
 
 export const LogoWrapper = styled.div`
+  background-color: rgba(255, 255, 255, 0.94);
+  border-radius: 0.4375rem;
+
   > a {
     display: flex;
     text-decoration: none;
@@ -20,16 +23,22 @@ export const LogoWrapper = styled.div`
 
 export const LogoImageWrapper = styled.div`
   padding: 1rem;
-  background-color: #fff;
+  background-color: #f07319;
+  border-radius: 0.4375rem;
+
+  > svg {
+    display: block;
+  }
 `
 
 export const LogoText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0 0.75rem;
 
   h2 {
-    margin: -0.25rem 0 0 0;
+    margin: 0;
     font-family: 'Overpass', sans-serif;
     font-size: 1.125rem;
     color: hsla(215, 12%, 20%, 1);
@@ -138,4 +147,55 @@ export const Category = styled.li`
       color: hsla(215, 12%, 20%, 1);
     }
   }
+`
+
+export const Carousel = styled.div`
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 80vh;
+
+  .swiper {
+    height: 100%;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.0086472) 6.67%,
+        rgba(255, 255, 255, 0.03551) 13.33%,
+        rgba(255, 255, 255, 0.0816599) 20%,
+        rgba(255, 255, 255, 0.147411) 26.67%,
+        rgba(255, 255, 255, 0.231775) 33.33%,
+        rgba(255, 255, 255, 0.331884) 40%,
+        rgba(255, 255, 255, 0.442691) 46.54%,
+        rgba(255, 255, 255, 0.557309) 53.33%,
+        rgba(255, 255, 255, 0.668116) 60%,
+        rgba(255, 255, 255, 0.768225) 66.67%,
+        rgba(255, 255, 255, 0.852589) 73.33%,
+        rgba(255, 255, 255, 0.91834) 80%,
+        rgba(255, 255, 255, 0.96449) 86.67%,
+        rgba(255, 255, 255, 0.991353) 93.33%,
+        #ffffff 100%
+      );
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
+
+export const CarouselPad = styled.div`
+  width: 100%;
+  height: 50vh;
 `

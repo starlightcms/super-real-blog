@@ -1,5 +1,10 @@
-import Starlight, { Entry, ModelCategory } from '@starlightcms/react-sdk'
-import { Post } from 'src/starlight'
+import Starlight, {
+  Entry,
+  ModelCategory,
+  Singleton,
+  StarlightListResponse,
+} from '@starlightcms/react-sdk'
+import { HomeSingleton, Post } from 'src/starlight'
 import { Layout } from 'src/components/Layout'
 import { Card } from 'src/components/Card'
 import { CardList } from 'src/styles/home'
@@ -7,16 +12,23 @@ import Head from 'next/head'
 import { GetStaticProps } from 'next'
 
 type HomeProps = {
+  home: Singleton<HomeSingleton>
+  featuredPosts: Entry<Post>[] | null
   posts: Entry<Post>[]
   categories: ModelCategory[]
 }
 
-const Home = ({ posts, categories }: HomeProps) => (
+const Home = ({ home, featuredPosts, posts, categories }: HomeProps) => (
   <>
     <Head>
-      <title>Blog Super Real do Starlight</title>
+      <title>{home.data.title}</title>
     </Head>
-    <Layout categories={categories}>
+    <Layout
+      title={home.data.title}
+      subtitle={home.data.subtitle}
+      featuredPosts={featuredPosts}
+      categories={categories}
+    >
       <CardList>
         {posts.map((post) => (
           <Card key={post.id} post={post} />
@@ -27,13 +39,27 @@ const Home = ({ posts, categories }: HomeProps) => (
 )
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [posts, categories] = await Promise.all([
+  let featuredPosts: StarlightListResponse<Entry<Post>> = null
+
+  const [home, posts, categories] = await Promise.all([
+    Starlight.singletons.get<HomeSingleton>('home'),
     Starlight.posts.entries.list(),
     Starlight.posts.categories.list(),
   ])
 
+  if (
+    home.data.data.is_featured_enabled &&
+    home.data.data.featured_collection
+  ) {
+    featuredPosts = await Starlight.collection(
+      home.data.data.featured_collection.object.slug
+    ).items()
+  }
+
   return {
     props: {
+      home: home.data,
+      featuredPosts: featuredPosts?.data ?? null,
       posts: posts.data,
       categories: categories.data,
     },

@@ -25,8 +25,8 @@ export const Logo = () => (
         y2="30"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#FFBF1B" />
-        <stop offset=".5" stopColor="#F07319" />
+        <stop stopColor="#fff" stopOpacity=".35" />
+        <stop offset=".5" stopColor="#fff" />
       </linearGradient>
       <linearGradient
         id="b"
@@ -36,8 +36,8 @@ export const Logo = () => (
         y2="0"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#FFBF1B" />
-        <stop offset=".5" stopColor="#F07319" />
+        <stop stopColor="#fff" stopOpacity=".35" />
+        <stop offset=".5" stopColor="#fff" />
       </linearGradient>
       <linearGradient
         id="c"
@@ -47,8 +47,8 @@ export const Logo = () => (
         y2="5.06"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#FFBF1B" />
-        <stop offset=".5" stopColor="#F07319" />
+        <stop stopColor="#fff" stopOpacity=".35" />
+        <stop offset=".5" stopColor="#fff" />
       </linearGradient>
       <linearGradient
         id="d"
@@ -58,8 +58,8 @@ export const Logo = () => (
         y2="24.94"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#FFBF1B" />
-        <stop offset=".5" stopColor="#F07319" />
+        <stop stopColor="#fff" stopOpacity=".35" />
+        <stop offset=".5" stopColor="#fff" />
       </linearGradient>
     </defs>
   </svg>

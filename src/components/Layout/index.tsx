@@ -1,4 +1,11 @@
-import { ChangeEvent, FormEvent, ReactNode, useCallback, useState } from 'react'
+import {
+  ChangeEvent,
+  FormEvent,
+  ReactNode,
+  useCallback,
+  useRef,
+  useState,
+} from 'react'
 import { Global } from '@emotion/react'
 import { globalStyles } from 'src/styles'
 import {
@@ -14,20 +21,35 @@ import {
   CategoryList,
   Category,
   Search,
+  Carousel,
+  CarouselPad,
 } from './styles'
 import { Logo } from 'src/components/Logo'
-import { ModelCategory } from '@starlightcms/react-sdk'
+import { Entry, ModelCategory, ResponsiveImage } from '@starlightcms/react-sdk'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Post } from 'src/starlight'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper'
 
 type LayoutProps = {
+  title?: string
+  subtitle?: string
+  featuredPosts?: Entry<Post>[] | null
   categories: ModelCategory[]
   children: ReactNode
 }
 
-export const Layout = ({ categories, children }: LayoutProps) => {
+export const Layout = ({
+  title,
+  subtitle,
+  featuredPosts,
+  categories,
+  children,
+}: LayoutProps) => {
   const { push } = useRouter()
   const [query, setQuery] = useState('')
+  const swiperRef = useRef(null)
 
   const handleQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
@@ -43,6 +65,29 @@ export const Layout = ({ categories, children }: LayoutProps) => {
 
   return (
     <>
+      {featuredPosts?.length && (
+        <>
+          <Carousel>
+            <Swiper
+              // @ts-ignore - swiper type is currently missing the ref prop
+              ref={swiperRef}
+              slidesPerView={1}
+              modules={[Navigation]}
+              navigation={{ nextEl: '.swipe-next', prevEl: '.swipe-prev' }}
+            >
+              {featuredPosts.map((post) => (
+                <SwiperSlide key={post.id}>
+                  <ResponsiveImage
+                    image={post.data.featured_image}
+                    sizes="100vw"
+                    lazyRoot={swiperRef}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Carousel>
+        </>
+      )}
       <Global styles={globalStyles} />
       <Container>
         <Header>
@@ -53,13 +98,36 @@ export const Layout = ({ categories, children }: LayoutProps) => {
                   <Logo />
                 </LogoImageWrapper>
                 <LogoText>
-                  <h2>Blog Super Real do Starlight</h2>
-                  <h3>Esse absolutamente não é um site de exemplo</h3>
+                  <h2>{title || 'Blog Super Real do Starlight'}</h2>
+                  <h3>
+                    {subtitle || 'Esse absolutamente não é um site de exemplo'}
+                  </h3>
                 </LogoText>
               </a>
             </Link>
           </LogoWrapper>
         </Header>
+        {featuredPosts?.length && (
+          <>
+            <CarouselPad />
+            <Swiper
+              slidesPerView={1}
+              modules={[Navigation]}
+              navigation={{ nextEl: '.swipe-next', prevEl: '.swipe-prev' }}
+              allowTouchMove={false}
+            >
+              {featuredPosts.map((post) => (
+                <SwiperSlide key={post.id}>{post.title}</SwiperSlide>
+              ))}
+            </Swiper>
+            <button type="button" className="swipe-prev">
+              prev
+            </button>
+            <button type="button" className="swipe-next">
+              next
+            </button>
+          </>
+        )}
         <Main>
           <Content>{children}</Content>
           <Sidebar>
