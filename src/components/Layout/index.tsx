@@ -127,7 +127,11 @@ export const Layout = ({
               >
                 {featuredPosts.map((post) => (
                   <SwiperSlide key={post.id}>
-                    <h2>{post.title}</h2>
+                    <Link href={`/post/${post.slug}`}>
+                      <a>
+                        <h2>{post.title}</h2>
+                      </a>
+                    </Link>
                     <span>
                       Por {post.author.name} • Publicado{' '}
                       {toRelativeDate(new Date(post.published_at))}

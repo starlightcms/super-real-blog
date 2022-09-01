@@ -209,6 +209,10 @@ export const FeaturedPost = styled.div`
   border-radius: 0.9375rem;
   box-shadow: 0 10px 35px -20px rgba(79, 88, 100, 0.35);
 
+  a {
+    text-decoration: none;
+  }
+
   h2 {
     margin: 0 0 0.625rem;
     font-family: 'Overpass', sans-serif;
