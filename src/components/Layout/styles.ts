@@ -42,7 +42,7 @@ export const LogoText = styled.div`
     font-family: 'Overpass', sans-serif;
     font-size: 1.125rem;
     color: hsla(215, 12%, 20%, 1);
-    letter-spacing: -0.035rem;
+    letter-spacing: -0.035em;
   }
 
   h3 {
@@ -56,7 +56,7 @@ export const LogoText = styled.div`
 
 export const Main = styled.main`
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 3fr 1fr;
   gap: 2rem;
 `
 
@@ -198,4 +198,51 @@ export const Carousel = styled.div`
 export const CarouselPad = styled.div`
   width: 100%;
   height: 50vh;
+  pointer-events: none;
+`
+
+export const FeaturedPost = styled.div`
+  position: relative;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background-color: #fff;
+  border-radius: 0.9375rem;
+  box-shadow: 0 10px 35px -20px rgba(79, 88, 100, 0.35);
+
+  h2 {
+    margin: 0 0 0.625rem;
+    font-family: 'Overpass', sans-serif;
+    font-size: 2.25rem;
+    letter-spacing: -0.025em;
+    color: hsla(215, 12%, 25%, 1);
+  }
+
+  span {
+    font-family: 'Cabin', sans-serif;
+    font-size: 0.875rem;
+    color: hsla(215, 10%, 55%, 1);
+  }
+`
+
+export const FeaturedButtons = styled.div`
+  position: absolute;
+  z-index: 1;
+  bottom: 1.5rem;
+  right: 1.5rem;
+
+  > button {
+    width: 2.25rem;
+    height: 2.25rem;
+    background: #dde0e4
+      url("data:image/svg+xml,%3Csvg width='20' height='20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='14' height='2' rx='1' transform='matrix(-1 0 0 1 16 9)' fill='%234F5864'/%3E%3Cpath d='M17.3 10.7a1 1 0 0 0 0-1.4l-4.25-4.25a1 1 0 1 0-1.41 1.41l4.24 4.25a1 1 0 0 0 1.41 0Z' fill='%234F5864'/%3E%3Cpath d='M17.3 9.3a1 1 0 0 1 0 1.4l-4.25 4.25a1 1 0 1 1-1.41-1.41l4.24-4.25a1 1 0 0 1 1.41 0Z' fill='%234F5864'/%3E%3C/svg%3E")
+      center no-repeat;
+    border: none;
+    border-radius: 0.625rem;
+    cursor: pointer;
+
+    &:first-of-type {
+      margin-right: 0.625rem;
+      transform: rotate(180deg);
+    }
+  }
 `

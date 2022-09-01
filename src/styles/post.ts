@@ -14,7 +14,7 @@ export const Title = styled.h2`
   margin: 0 0 0.625rem;
   font-family: 'Overpass', sans-serif;
   font-size: 2.5rem;
-  letter-spacing: -0.045rem;
+  letter-spacing: -0.045em;
   color: hsla(215, 12%, 25%, 1);
 `
 

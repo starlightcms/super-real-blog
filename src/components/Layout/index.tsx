@@ -23,6 +23,8 @@ import {
   Search,
   Carousel,
   CarouselPad,
+  FeaturedPost,
+  FeaturedButtons,
 } from './styles'
 import { Logo } from 'src/components/Logo'
 import { Entry, ModelCategory, ResponsiveImage } from '@starlightcms/react-sdk'
@@ -30,7 +32,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Post } from 'src/starlight'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper'
+import { Autoplay, Navigation } from 'swiper'
+import { toRelativeDate } from 'src/helpers/date'
 
 type LayoutProps = {
   title?: string
@@ -72,8 +75,10 @@ export const Layout = ({
               // @ts-ignore - swiper type is currently missing the ref prop
               ref={swiperRef}
               slidesPerView={1}
-              modules={[Navigation]}
+              modules={[Navigation, Autoplay]}
               navigation={{ nextEl: '.swipe-next', prevEl: '.swipe-prev' }}
+              autoplay={{ delay: 8000 }}
+              loop
             >
               {featuredPosts.map((post) => (
                 <SwiperSlide key={post.id}>
@@ -110,22 +115,31 @@ export const Layout = ({
         {featuredPosts?.length && (
           <>
             <CarouselPad />
-            <Swiper
-              slidesPerView={1}
-              modules={[Navigation]}
-              navigation={{ nextEl: '.swipe-next', prevEl: '.swipe-prev' }}
-              allowTouchMove={false}
-            >
-              {featuredPosts.map((post) => (
-                <SwiperSlide key={post.id}>{post.title}</SwiperSlide>
-              ))}
-            </Swiper>
-            <button type="button" className="swipe-prev">
-              prev
-            </button>
-            <button type="button" className="swipe-next">
-              next
-            </button>
+            <FeaturedPost>
+              <Swiper
+                slidesPerView={1}
+                modules={[Navigation, Autoplay]}
+                navigation={{ nextEl: '.swipe-next', prevEl: '.swipe-prev' }}
+                allowTouchMove={false}
+                autoplay={{ delay: 8000 }}
+                speed={350}
+                loop
+              >
+                {featuredPosts.map((post) => (
+                  <SwiperSlide key={post.id}>
+                    <h2>{post.title}</h2>
+                    <span>
+                      Por {post.author.name} • Publicado{' '}
+                      {toRelativeDate(new Date(post.published_at))}
+                    </span>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <FeaturedButtons>
+                <button type="button" className="swipe-prev" />
+                <button type="button" className="swipe-next" />
+              </FeaturedButtons>
+            </FeaturedPost>
           </>
         )}
         <Main>
