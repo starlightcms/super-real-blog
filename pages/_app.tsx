@@ -1,4 +1,4 @@
-import Starlight, { VisualContentStyles } from '@starlightcms/react-sdk'
+import Starlight from '@starlightcms/react-sdk'
 import 'swiper/css'
 
 Starlight.configure({
@@ -10,7 +10,6 @@ Starlight.configure({
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <VisualContentStyles />
       <Component {...pageProps} />
     </>
   )
